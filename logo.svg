@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Orbbt logo">
-  <circle cx="128" cy="128" r="126" fill="#5b24ff"/>
-  <circle cx="58" cy="64" r="10" fill="#111111"/>
-  <circle cx="128" cy="96" r="22" fill="#111111"/>
-  <path d="M44 95c37 0 43 48 84 48s47-48 84-48" fill="none" stroke="#111111" stroke-width="16" stroke-linecap="round"/>
-  <path d="M38 130c44 0 49 44 90 44s46-44 90-44" fill="none" stroke="#d7c8ff" stroke-width="14" stroke-linecap="round"/>
-  <path d="M54 164c36 6 47 34 74 34s38-28 74-34" fill="none" stroke="#b7a0ff" stroke-width="14" stroke-linecap="round"/>
-</svg>

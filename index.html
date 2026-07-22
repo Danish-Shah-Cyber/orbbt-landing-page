@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Orbbt - Your Job Hunt Companion</title>
-  <meta name="description" content="Orbbt organizes your job hunt with job tracking, AI company research, deadline alerts, and contact reminders.">
+  <title>orbbt. - Your Job Hunt Companion</title>
+  <meta name="description" content="orbbt. organizes your job hunt with job tracking, AI company research, deadline alerts, and contact reminders.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -105,6 +105,7 @@
       text-decoration: none;
       font-size: 18px;
       font-weight: 700;
+      line-height: 1;
     }
 
     .brand img {
@@ -311,13 +312,24 @@
       padding: 7px 10px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.82);
+      background: rgba(255, 255, 255, 0.88);
       color: var(--muted);
       font-size: 12px;
       font-weight: 700;
       text-align: center;
       box-shadow: 0 10px 28px rgba(17, 17, 17, 0.04);
       animation: drift 5.8s ease-in-out infinite;
+    }
+
+    .float-note::before {
+      content: "";
+      position: absolute;
+      inset: -10px -14px;
+      z-index: -1;
+      border-radius: inherit;
+      background: rgba(91, 36, 255, 0.24);
+      filter: blur(14px);
+      opacity: 0.95;
     }
 
     .float-note.one {
@@ -335,6 +347,38 @@
       right: 24px;
       bottom: 34px;
       animation-delay: -3.2s;
+    }
+
+    .product-preview {
+      padding-top: 0;
+    }
+
+    .preview-frame {
+      position: relative;
+      margin-top: 34px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 24px 70px rgba(17, 17, 17, 0.08);
+      overflow: hidden;
+    }
+
+    .preview-frame::before {
+      content: "";
+      position: absolute;
+      inset: auto 14% -42px 14%;
+      height: 90px;
+      border-radius: 50%;
+      background: rgba(91, 36, 255, 0.16);
+      filter: blur(28px);
+      pointer-events: none;
+    }
+
+    .preview-frame img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      border: 1px solid rgba(232, 226, 216, 0.78);
     }
 
     .section-head {
@@ -867,15 +911,15 @@
   <header class="topbar">
     <nav class="wrap nav" aria-label="Primary navigation">
       <a class="brand" href="#home">
-        <img src="logo.svg" alt="Orbbt logo">
-        <span>Orbbt</span>
+        <img src="orbbt-logo.png" alt="orbbt. logo">
+        <span>orbbt.</span>
       </a>
 
       <div class="nav-links" id="navLinks">
         <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
         <a href="#contact">Contact</a>
-        <a href="waitlist.html">Waitlist</a>
+        <a href="waitlist.html">Mobile app waitlist</a>
         <a href="privacy-policy.html">Policies</a>
         <a href="auth.html">Log in</a>
       </div>
@@ -896,7 +940,7 @@
       <div class="wrap hero-grid">
         <div>
           <p class="eyebrow">Your job hunt companion</p>
-          <h1>Job hunting is a job. Orbbt keeps it organized.</h1>
+          <h1>Job hunting is a job. orbbt. keeps it organized.</h1>
           <p class="lead">Track roles, research companies, remember deadlines, and keep useful contacts in one calm place.</p>
           <div class="hero-actions">
             <a class="btn primary" href="auth.html">Try now 100% free</a>
@@ -905,8 +949,8 @@
           <p class="small-note">Built for people applying, interviewing, following up, and trying to stay sane.</p>
         </div>
 
-        <div class="orb" aria-label="Orbbt visual">
-          <img src="logo.svg" alt="">
+        <div class="orb" aria-label="orbbt. visual">
+          <img src="orbbt-logo.png" alt="">
           <span class="float-note one">Applied</span>
           <span class="float-note two">Due Friday</span>
           <span class="float-note three">Follow up</span>
@@ -918,7 +962,7 @@
       <div class="narrow">
         <div class="label">Problem</div>
         <h2>Your job search should not live in ten places.</h2>
-        <p>Applications get scattered across tabs, emails, notes, calendars, and messages. Orbbt brings the important pieces together so your next step is always clear.</p>
+        <p>Applications get scattered across tabs, emails, notes, calendars, and messages. orbbt. brings the important pieces together so your next step is always clear.</p>
       </div>
     </section>
 
@@ -929,9 +973,22 @@
           <h2>We wanted the job hunt to feel lighter.</h2>
         </div>
         <div>
-          <p>Orbbt started from a simple frustration: the work around applying can become heavier than the application itself.</p>
+          <p>orbbt. started from a simple frustration: the work around applying can become heavier than the application itself.</p>
           <p>So the product is intentionally simple. Save the role. Understand the company. Track what happens next. Remember who matters.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="product-preview reveal">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="label">Product preview</div>
+          <h2>A quiet place for a very busy search.</h2>
+          <p>The app keeps jobs, contacts, companies, and tracking visible without making the workflow feel heavy.</p>
+        </div>
+        <figure class="preview-frame">
+          <img src="app-preview.png" alt="orbbt. app jobs dashboard preview">
+        </figure>
       </div>
     </section>
 
@@ -940,7 +997,7 @@
         <div class="section-head">
           <div class="label">Features</div>
           <h2>Just the parts that keep you moving.</h2>
-          <p>No giant dashboard energy. Orbbt focuses on the few things that make a job hunt easier to manage.</p>
+          <p>No giant dashboard energy. orbbt. focuses on the few things that make a job hunt easier to manage.</p>
         </div>
 
         <div class="feature-list">
@@ -984,7 +1041,7 @@
             <span>02</span>
             <div>
               <h3>Get the context</h3>
-              <p>Use Orbbt to understand the company before you make your move.</p>
+              <p>Use orbbt. to understand the company before you make your move.</p>
             </div>
           </div>
           <div class="step">
@@ -1058,7 +1115,7 @@
             <a href="mailto:hello@orbbt.co"><span>hello@orbbt.co</span><span>Contact</span></a>
             <a href="mailto:support@orbbt.co"><span>support@orbbt.co</span><span>Support</span></a>
             <a href="#"><span>Instagram</span><span>@orbbt</span></a>
-            <a href="#"><span>LinkedIn</span><span>Orbbt</span></a>
+            <a href="#"><span>LinkedIn</span><span>orbbt.</span></a>
           </div>
         </div>
 
@@ -1080,10 +1137,10 @@
     <section class="final reveal">
       <div class="narrow">
         <h2>Ease your mind. Focus on what matters.</h2>
-        <p class="lead">Your job hunt, organized in Orbbt.</p>
+        <p class="lead">Your job hunt, organized in orbbt.</p>
         <div class="hero-actions" style="justify-content: center;">
           <a class="btn primary" href="auth.html">Try now 100% free</a>
-          <a class="btn" href="waitlist.html">Join waitlist</a>
+          <a class="btn" href="waitlist.html">Join mobile app waitlist</a>
         </div>
       </div>
     </section>
@@ -1092,24 +1149,24 @@
       <div class="narrow">
         <div class="label">FAQ</div>
         <h2>Frequently asked questions</h2>
-        <p class="lead">What to know about Orbbt, privacy, and getting started.</p>
+        <p class="lead">What to know about orbbt., privacy, and getting started.</p>
 
         <div class="faq-list">
           <article class="faq-item open">
             <button class="faq-question" type="button" aria-expanded="true">
-              <span>What is Orbbt?</span>
+              <span>What is orbbt.?</span>
               <span>+</span>
             </button>
             <div class="faq-answer">
               <div>
-                <p>Orbbt is a job hunt companion that keeps your applications, company research, deadlines, contacts, and follow-ups organized in one place.</p>
+                <p>orbbt. is a job hunt companion that keeps your applications, company research, deadlines, contacts, and follow-ups organized in one place.</p>
               </div>
             </div>
           </article>
 
           <article class="faq-item">
             <button class="faq-question" type="button" aria-expanded="false">
-              <span>Is Orbbt free?</span>
+              <span>Is orbbt. free?</span>
               <span>+</span>
             </button>
             <div class="faq-answer">
@@ -1121,12 +1178,12 @@
 
           <article class="faq-item">
             <button class="faq-question" type="button" aria-expanded="false">
-              <span>What platforms will Orbbt support?</span>
+              <span>What platforms will orbbt. support?</span>
               <span>+</span>
             </button>
             <div class="faq-answer">
               <div>
-                <p>Orbbt is planned for web, mobile, and a Chrome extension, so you can save and manage roles wherever the job hunt happens.</p>
+                <p>orbbt. is planned for web, mobile, and a Chrome extension, with a mobile app waitlist for App Store and Play Store early access.</p>
               </div>
             </div>
           </article>
@@ -1138,7 +1195,7 @@
             </button>
             <div class="faq-answer">
               <div>
-                <p>Orbbt uses your data to run the product and does not sell personal job hunt data. Final privacy details are available on the privacy policy page.</p>
+                <p>orbbt. uses your data to run the product and does not sell personal job hunt data. Final privacy details are available on the privacy policy page.</p>
               </div>
             </div>
           </article>
@@ -1188,10 +1245,10 @@
 
       <div class="footer-bottom">
         <a class="brand" href="#home">
-          <img src="logo.svg" alt="">
-          <span>Orbbt</span>
+          <img src="orbbt-logo.png" alt="">
+          <span>orbbt.</span>
         </a>
-        <span>Copyright 2026 Orbbt</span>
+        <span>Copyright 2026 orbbt.</span>
       </div>
     </div>
   </footer>
