@@ -105,13 +105,30 @@
       text-decoration: none;
       font-size: 18px;
       font-weight: 700;
-      line-height: 1;
+      line-height: 1.05;
     }
 
     .brand img {
       width: 32px;
       height: 32px;
       object-fit: contain;
+    }
+
+    .brand-copy {
+      display: grid;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .brand-sub {
+      color: var(--soft);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
     }
 
     .nav-links {
@@ -127,8 +144,69 @@
       text-decoration: none;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover,
+    .nav-dropdown:hover,
+    .nav-dropdown:focus-visible {
       color: var(--ink);
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-dropdown {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-dropdown::after {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg) translateY(-2px);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 50%;
+      display: grid;
+      min-width: 190px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 18px 45px rgba(17, 17, 17, 0.08);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 8px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .dropdown-menu a {
+      padding: 9px 10px;
+      color: var(--muted);
+    }
+
+    .dropdown-menu a:hover {
+      background: var(--violet-soft);
+      color: var(--ink);
+    }
+
+    .nav-item:hover .dropdown-menu,
+    .nav-item:focus-within .dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, 0);
     }
 
     .nav-actions {
@@ -190,17 +268,82 @@
     }
 
     .hero {
+      position: relative;
       min-height: calc(100vh - 64px);
       display: grid;
       align-items: center;
       padding: 80px 0 70px;
+      overflow: hidden;
+      text-align: center;
     }
 
-    .hero-grid {
+    .hero-inner {
+      position: relative;
+      z-index: 1;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 300px;
-      gap: 92px;
-      align-items: center;
+      justify-items: center;
+    }
+
+    .hero-orbits {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      pointer-events: none;
+      opacity: 0.88;
+    }
+
+    .orbit-ring {
+      position: absolute;
+      width: min(82vw, 780px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(91, 36, 255, 0.13);
+      border-radius: 50%;
+      animation: orbitBreathe 9s ease-in-out infinite;
+    }
+
+    .orbit-ring.two {
+      width: min(64vw, 580px);
+      border-color: rgba(91, 36, 255, 0.17);
+      animation-delay: -2.8s;
+    }
+
+    .orbit-ring.three {
+      width: min(44vw, 410px);
+      border-color: rgba(91, 36, 255, 0.2);
+      animation-delay: -5.6s;
+    }
+
+    .orbit-dot {
+      position: absolute;
+      width: min(82vw, 780px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      animation: orbitSpin 18s linear infinite;
+    }
+
+    .orbit-dot::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -3px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--violet);
+      box-shadow: 0 0 28px rgba(91, 36, 255, 0.48);
+    }
+
+    .orbit-dot.two {
+      width: min(64vw, 580px);
+      animation-duration: 24s;
+      animation-direction: reverse;
+    }
+
+    .orbit-dot.two::before {
+      width: 5px;
+      height: 5px;
+      background: #8b6dff;
     }
 
     .eyebrow {
@@ -223,7 +366,7 @@
       margin-bottom: 20px;
       font-size: clamp(36px, 5.8vw, 68px);
       line-height: 0.98;
-      letter-spacing: -0.04em;
+      letter-spacing: 0;
       font-weight: 800;
     }
 
@@ -231,7 +374,7 @@
       margin-bottom: 16px;
       font-size: clamp(28px, 3.8vw, 46px);
       line-height: 1.05;
-      letter-spacing: -0.035em;
+      letter-spacing: 0;
       font-weight: 800;
     }
 
@@ -255,6 +398,12 @@
       line-height: 1.55;
     }
 
+    .hero .lead {
+      max-width: 660px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .small-note {
       margin-top: 12px;
       color: var(--soft);
@@ -266,6 +415,35 @@
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .benefit-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 2px 0 28px;
+    }
+
+    .benefit {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #25211d;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .benefit::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--violet);
+      border-radius: 50%;
+      background:
+        linear-gradient(135deg, transparent 46%, var(--violet) 48% 58%, transparent 60%) 5px 7px / 8px 6px no-repeat,
+        rgba(91, 36, 255, 0.07);
     }
 
     .orb {
@@ -407,34 +585,125 @@
       margin-top: 18px;
     }
 
-    .feature-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
+    .feature-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 34px;
+      margin-bottom: 34px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .feature {
-      min-height: 210px;
-      padding: 28px;
-      background: var(--paper);
-    }
-
-    .feature:nth-child(1) {
-      background: linear-gradient(180deg, var(--violet-soft), var(--paper) 78%);
-    }
-
-    .feature:nth-child(4) {
-      background: linear-gradient(180deg, var(--mint-soft), var(--paper) 78%);
-    }
-
-    .feature-number {
-      margin-bottom: 42px;
-      color: var(--soft);
-      font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 12px;
+    .feature-tab {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 58px;
+      padding: 0 2px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 16px;
       font-weight: 700;
+      cursor: pointer;
+    }
+
+    .feature-tab::before {
+      content: "";
+      width: 22px;
+      height: 22px;
+      border: 1.5px solid currentColor;
+      border-radius: 6px;
+      opacity: 0.8;
+    }
+
+    .feature-tab::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 2px;
+      background: var(--violet);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.18s ease;
+    }
+
+    .feature-tab.active {
+      color: var(--ink);
+    }
+
+    .feature-tab.active::after {
+      transform: scaleX(1);
+    }
+
+    .feature-showcase {
+      display: grid;
+      grid-template-columns: 0.72fr 1.28fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .feature-copy {
+      max-width: 380px;
+    }
+
+    .feature-copy h3 {
+      margin-bottom: 12px;
+      font-size: 30px;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .feature-copy p {
+      font-size: 15px;
+    }
+
+    .feature-points {
+      margin-top: 22px;
+    }
+
+    .feature-points li {
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .feature-points li::before {
+      content: "";
+      position: absolute;
+      top: 0.72em;
+      left: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--violet);
+    }
+
+    .feature-image-card {
+      position: relative;
+      padding: 9px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.66);
+      overflow: hidden;
+      box-shadow: 0 22px 60px rgba(17, 17, 17, 0.07);
+    }
+
+    .feature-image-card::before {
+      content: "";
+      position: absolute;
+      inset: auto 18% -48px 18%;
+      height: 100px;
+      border-radius: 50%;
+      background: rgba(91, 36, 255, 0.18);
+      filter: blur(28px);
+    }
+
+    .feature-image-card img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      border: 1px solid rgba(232, 226, 216, 0.85);
     }
 
     .steps {
@@ -507,7 +776,7 @@
       font-size: 34px;
       line-height: 1;
       font-weight: 800;
-      letter-spacing: -0.04em;
+      letter-spacing: 0;
     }
 
     .price small {
@@ -812,6 +1081,24 @@
       }
     }
 
+    @keyframes orbitBreathe {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.64;
+      }
+
+      50% {
+        transform: scale(1.035);
+        opacity: 0.34;
+      }
+    }
+
+    @keyframes orbitSpin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
     @media (max-width: 860px) {
       .nav-links {
         display: none;
@@ -829,11 +1116,33 @@
         grid-template-columns: 1fr 1fr;
       }
 
+      .nav-item {
+        position: static;
+      }
+
+      .dropdown-menu {
+        position: static;
+        display: grid;
+        grid-column: 1 / -1;
+        min-width: 0;
+        padding: 6px 0 0 12px;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+      }
+
+      .nav-item:hover .dropdown-menu,
+      .nav-item:focus-within .dropdown-menu {
+        transform: none;
+      }
+
       .menu {
         display: block;
       }
 
-      .hero-grid,
       .story,
       .contact-grid,
       .auth-grid {
@@ -845,15 +1154,22 @@
         min-height: 260px;
       }
 
-      .feature-list,
+      .feature-showcase,
       .pricing-grid,
       .policies,
       .footer-grid {
         grid-template-columns: 1fr;
       }
 
-      .feature {
-        min-height: auto;
+      .feature-tabs {
+        justify-content: flex-start;
+        gap: 18px;
+        overflow-x: auto;
+        padding-bottom: 1px;
+      }
+
+      .feature-tab {
+        flex: 0 0 auto;
       }
     }
 
@@ -879,6 +1195,14 @@
         font-size: 36px;
       }
 
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-orbits {
+        opacity: 0.58;
+      }
+
       h2 {
         font-size: 30px;
       }
@@ -889,6 +1213,12 @@
 
       .step {
         grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .benefit-row {
+        display: grid;
+        justify-items: center;
         gap: 8px;
       }
 
@@ -912,7 +1242,10 @@
     <nav class="wrap nav" aria-label="Primary navigation">
       <a class="brand" href="#home">
         <img src="orbbt-logo.png" alt="orbbt. logo">
-        <span>orbbt.</span>
+        <span class="brand-copy">
+          <span class="brand-name">orbbt.</span>
+          <span class="brand-sub">by zyntro</span>
+        </span>
       </a>
 
       <div class="nav-links" id="navLinks">
@@ -920,7 +1253,14 @@
         <a href="#pricing">Pricing</a>
         <a href="#contact">Contact</a>
         <a href="waitlist.html">Mobile app waitlist</a>
-        <a href="privacy-policy.html">Policies</a>
+        <div class="nav-item">
+          <button class="nav-dropdown" type="button" aria-haspopup="true">Policies</button>
+          <div class="dropdown-menu">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-and-conditions.html">Terms and Conditions</a>
+            <a href="refund-policy.html">Refund Policy</a>
+          </div>
+        </div>
         <a href="auth.html">Log in</a>
       </div>
 
@@ -937,24 +1277,29 @@
 
   <main id="home">
     <section class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <p class="eyebrow">Your job hunt companion</p>
-          <h1>Job hunting is a job. orbbt. keeps it organized.</h1>
-          <p class="lead">Track roles, research companies, remember deadlines, and keep useful contacts in one calm place.</p>
-          <div class="hero-actions">
-            <a class="btn primary" href="auth.html">Try now 100% free</a>
-            <a class="btn" href="#features">See features</a>
-          </div>
-          <p class="small-note">Built for people applying, interviewing, following up, and trying to stay sane.</p>
-        </div>
+      <div class="hero-orbits" aria-hidden="true">
+        <span class="orbit-ring"></span>
+        <span class="orbit-ring two"></span>
+        <span class="orbit-ring three"></span>
+        <span class="orbit-dot"></span>
+        <span class="orbit-dot two"></span>
+      </div>
 
-        <div class="orb" aria-label="orbbt. visual">
-          <img src="orbbt-logo.png" alt="">
-          <span class="float-note one">Applied</span>
-          <span class="float-note two">Due Friday</span>
-          <span class="float-note three">Follow up</span>
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Your job hunt companion</p>
+        <h1>Organize every job application in one calm place.</h1>
+        <p class="lead">Job hunting is already a job. orbbt. helps you track roles, research companies, remember deadlines, and follow up without the mental clutter.</p>
+        <div class="benefit-row" aria-label="orbbt. benefits">
+          <span class="benefit">Job tracker</span>
+          <span class="benefit">AI company research</span>
+          <span class="benefit">Deadline reminders</span>
+          <span class="benefit">Contact notes</span>
         </div>
+        <div class="hero-actions">
+          <a class="btn primary" href="auth.html">Try now 100% free</a>
+          <a class="btn" href="waitlist.html">Join mobile app waitlist</a>
+        </div>
+        <p class="small-note">Built for applicants, students, graduates, and career switchers.</p>
       </div>
     </section>
 
@@ -1000,27 +1345,28 @@
           <p>No giant dashboard energy. orbbt. focuses on the few things that make a job hunt easier to manage.</p>
         </div>
 
-        <div class="feature-list">
-          <article class="feature">
-            <div class="feature-number">01</div>
-            <h3>AI Company Research</h3>
-            <p>Learn what the company does, what is public on the web, and what to prepare before applying or interviewing.</p>
-          </article>
-          <article class="feature">
-            <div class="feature-number">02</div>
-            <h3>Job Tracking</h3>
-            <p>Keep applied roles, statuses, notes, and links in one organized view.</p>
-          </article>
-          <article class="feature">
-            <div class="feature-number">03</div>
-            <h3>Deadline Alerts</h3>
-            <p>Get reminders before applications, interviews, assessments, and follow-ups slip by.</p>
-          </article>
-          <article class="feature">
-            <div class="feature-number">04</div>
-            <h3>Contacts</h3>
-            <p>Save recruiters, referrals, alumni, and people you should build a connection with.</p>
-          </article>
+        <div class="feature-tabs" role="tablist" aria-label="orbbt. features">
+          <button class="feature-tab active" type="button" role="tab" aria-selected="true" data-feature="tracker">Job Tracking</button>
+          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-feature="research">AI Research</button>
+          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-feature="deadlines">Deadline Alerts</button>
+          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-feature="contacts">Contacts</button>
+        </div>
+
+        <div class="feature-showcase">
+          <div class="feature-copy">
+            <div class="label" id="featureEyebrow">Feature 01</div>
+            <h3 id="featureTitle">Track every role without losing the thread.</h3>
+            <p id="featureBody">Keep companies, roles, statuses, locations, salary notes, deadlines, and next steps in one organized view.</p>
+            <ul class="feature-points" id="featurePoints">
+              <li>See applied, saved, interviewed, and rejected roles at a glance.</li>
+              <li>Keep job links and notes attached to each application.</li>
+              <li>Use the same tracker across web, mobile, and extension.</li>
+            </ul>
+          </div>
+
+          <figure class="feature-image-card">
+            <img id="featureImage" src="app-preview.png" alt="orbbt. job tracking dashboard preview">
+          </figure>
         </div>
       </div>
     </section>
@@ -1246,7 +1592,10 @@
       <div class="footer-bottom">
         <a class="brand" href="#home">
           <img src="orbbt-logo.png" alt="">
-          <span>orbbt.</span>
+          <span class="brand-copy">
+            <span class="brand-name">orbbt.</span>
+            <span class="brand-sub">by zyntro</span>
+          </span>
         </a>
         <span>Copyright 2026 orbbt.</span>
       </div>
@@ -1278,6 +1627,81 @@
     }, { threshold: 0.12 });
 
     document.querySelectorAll(".reveal").forEach((item) => revealObserver.observe(item));
+
+    const featureData = {
+      tracker: {
+        eyebrow: "Feature 01",
+        title: "Track every role without losing the thread.",
+        body: "Keep companies, roles, statuses, locations, salary notes, deadlines, and next steps in one organized view.",
+        points: [
+          "See applied, saved, interviewed, and rejected roles at a glance.",
+          "Keep job links and notes attached to each application.",
+          "Use the same tracker across web, mobile, and extension."
+        ],
+        image: "app-preview.png",
+        alt: "orbbt. job tracking dashboard preview"
+      },
+      research: {
+        eyebrow: "Feature 02",
+        title: "Know the company before you apply.",
+        body: "AI company research helps you understand what a company does, what is public on the web, and what to prepare before outreach or interviews.",
+        points: [
+          "Summarize company context before you spend hours searching.",
+          "Prepare better answers for applications and interviews.",
+          "Save research beside the role you are applying for."
+        ],
+        image: "app-preview.png",
+        alt: "orbbt. AI company research preview"
+      },
+      deadlines: {
+        eyebrow: "Feature 03",
+        title: "Never let the next step go quiet.",
+        body: "Add reminders for applications, assessments, interviews, and follow-ups so your search keeps moving.",
+        points: [
+          "Track upcoming due dates from one place.",
+          "Plan follow-ups after applications and recruiter chats.",
+          "Reduce the feeling that something important is slipping."
+        ],
+        image: "app-preview.png",
+        alt: "orbbt. deadline alert preview"
+      },
+      contacts: {
+        eyebrow: "Feature 04",
+        title: "Remember the people behind the process.",
+        body: "Save recruiters, referrals, alumni, and hiring managers so relationship building does not disappear into messages and notes.",
+        points: [
+          "Keep contact notes connected to companies and jobs.",
+          "Remember who to follow up with and when.",
+          "Build a network because a strong resume is not the whole game."
+        ],
+        image: "app-preview.png",
+        alt: "orbbt. contact management preview"
+      }
+    };
+
+    const featureTabs = document.querySelectorAll(".feature-tab");
+    const featureEyebrow = document.getElementById("featureEyebrow");
+    const featureTitle = document.getElementById("featureTitle");
+    const featureBody = document.getElementById("featureBody");
+    const featurePoints = document.getElementById("featurePoints");
+    const featureImage = document.getElementById("featureImage");
+
+    featureTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const item = featureData[tab.dataset.feature];
+        featureTabs.forEach((button) => {
+          const active = button === tab;
+          button.classList.toggle("active", active);
+          button.setAttribute("aria-selected", String(active));
+        });
+        featureEyebrow.textContent = item.eyebrow;
+        featureTitle.textContent = item.title;
+        featureBody.textContent = item.body;
+        featureImage.src = item.image;
+        featureImage.alt = item.alt;
+        featurePoints.innerHTML = item.points.map((point) => `<li>${point}</li>`).join("");
+      });
+    });
 
     document.querySelectorAll(".faq-question").forEach((button) => {
       button.addEventListener("click", () => {
