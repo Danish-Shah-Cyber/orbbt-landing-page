@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>orbbt. - Your Job Hunt Companion</title>
-  <meta name="description" content="orbbt. organizes your job hunt with job tracking, AI company research, deadline alerts, and contact reminders.">
+  <meta name="description" content="orbbt. is a calm job application tracker and job hunt organizer with AI company research, deadline reminders, contact notes, and job search tracking across web, mobile, and Chrome extension.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -23,6 +23,10 @@
       --violet: #5b24ff;
       --violet-soft: #f0ebff;
       --mint-soft: #ecfbf3;
+      --green-soft: #effaf1;
+      --green: #168a45;
+      --red-soft: #fff0ed;
+      --red: #bd3f32;
       --sun-soft: #fff6db;
       --max: 1040px;
       --text: 650px;
@@ -33,26 +37,35 @@
     }
 
     body {
+      position: relative;
       margin: 0;
-      background: var(--bg);
+      background:
+        linear-gradient(125deg, #fbfaf6 0%, #f6f1ff 28%, #f3fff8 54%, #fff8e7 78%, #fbfaf6 100%);
+      background-size: 180% 180%;
       color: var(--ink);
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 15px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      animation: pageWash 22s ease-in-out infinite;
     }
 
     body::before {
       content: "";
       position: fixed;
-      inset: auto 8% 8% auto;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: rgba(91, 36, 255, 0.06);
-      filter: blur(12px);
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(100deg, rgba(91, 36, 255, 0.055), transparent 34%, rgba(22, 138, 69, 0.045) 58%, transparent 76%),
+        linear-gradient(20deg, transparent 0%, rgba(255, 246, 219, 0.42) 48%, transparent 100%);
+      background-size: 160% 160%, 140% 140%;
       pointer-events: none;
-      animation: breathe 7s ease-in-out infinite;
+      animation: pageVeil 18s ease-in-out infinite alternate;
+    }
+
+    body > * {
+      position: relative;
+      z-index: 1;
     }
 
     a {
@@ -528,7 +541,7 @@
     }
 
     .product-preview {
-      padding-top: 0;
+      padding-top: 54px;
     }
 
     .preview-frame {
@@ -557,6 +570,37 @@
       z-index: 1;
       width: 100%;
       border: 1px solid rgba(232, 226, 216, 0.78);
+    }
+
+    .trust-strip {
+      padding: 34px 0;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .trust-item {
+      min-height: 108px;
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.68);
+    }
+
+    .trust-item strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .trust-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
     }
 
     .section-head {
@@ -745,6 +789,73 @@
       color: var(--muted);
       font-size: 13px;
       font-weight: 600;
+    }
+
+    .comparison-table {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .comparison-col {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.68);
+      overflow: hidden;
+    }
+
+    .comparison-col.bad {
+      background: linear-gradient(180deg, var(--red-soft), rgba(255, 255, 255, 0.72) 74%);
+    }
+
+    .comparison-col.good {
+      background: linear-gradient(180deg, var(--green-soft), rgba(255, 255, 255, 0.72) 74%);
+    }
+
+    .comparison-col h3 {
+      display: flex;
+      align-items: center;
+      min-height: 56px;
+      margin: 0;
+      padding: 0 20px;
+      border-bottom: 1px solid var(--line);
+      font-size: 16px;
+    }
+
+    .comparison-list {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .comparison-list li {
+      padding: 15px 20px;
+      border-bottom: 1px solid rgba(232, 226, 216, 0.82);
+    }
+
+    .comparison-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .comparison-list strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--ink);
+      font-size: 13px;
+    }
+
+    .comparison-list span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .comparison-col.bad h3 {
+      color: var(--red);
+    }
+
+    .comparison-col.good h3 {
+      color: var(--green);
     }
 
     .pricing-grid {
@@ -1075,6 +1186,28 @@
       }
     }
 
+    @keyframes pageWash {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    @keyframes pageVeil {
+      0% {
+        background-position: 0% 40%, 100% 20%;
+        opacity: 0.86;
+      }
+
+      100% {
+        background-position: 100% 60%, 0% 80%;
+        opacity: 1;
+      }
+    }
+
     @keyframes orbitPulse {
       0%, 100% {
         transform: scale(1);
@@ -1181,6 +1314,8 @@
       }
 
       .feature-showcase,
+      .trust-grid,
+      .comparison-table,
       .pricing-grid,
       .policies,
       .footer-grid {
@@ -1312,20 +1447,50 @@
       </div>
 
       <div class="wrap hero-inner">
-        <p class="eyebrow">Your job hunt companion</p>
-        <h1>Organize every job application in one calm place.</h1>
-        <p class="lead">Job hunting is already a job. orbbt. helps you track roles, research companies, remember deadlines, and follow up without the mental clutter.</p>
+        <p class="eyebrow">Job application tracker and job hunt organizer</p>
+        <h1>Your job hunt, organized.</h1>
+        <p class="lead">Track applications, research companies, remember deadlines, and follow up from one calm place.</p>
         <div class="benefit-row" aria-label="orbbt. benefits">
-          <span class="benefit">Job tracker</span>
+          <span class="benefit">Job application tracker</span>
           <span class="benefit">AI company research</span>
           <span class="benefit">Deadline reminders</span>
-          <span class="benefit">Contact notes</span>
+          <span class="benefit">Contact management</span>
         </div>
         <div class="hero-actions">
-          <a class="btn primary" href="auth.html">Try now 100% free</a>
+          <a class="btn primary" href="auth.html">Try free on web</a>
           <a class="btn" href="waitlist.html">Join mobile app waitlist</a>
         </div>
-        <p class="small-note">Built for applicants, students, graduates, and career switchers.</p>
+        <p class="small-note">Built by Zyntro for students, graduates, active job seekers, and career switchers.</p>
+      </div>
+    </section>
+
+    <section class="product-preview reveal">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="label">Product preview</div>
+          <h2>A quiet place for a very busy search.</h2>
+          <p>orbbt. keeps jobs, contacts, companies, deadlines, and job search tracking visible without making the workflow feel heavy.</p>
+        </div>
+        <figure class="preview-frame">
+          <img src="app-preview.png" alt="orbbt. job application tracker dashboard preview">
+        </figure>
+      </div>
+    </section>
+
+    <section class="trust-strip reveal">
+      <div class="wrap trust-grid" aria-label="orbbt. trust signals">
+        <div class="trust-item">
+          <strong>Built by Zyntro</strong>
+          <span>A focused product team building practical tools for modern applicants.</span>
+        </div>
+        <div class="trust-item">
+          <strong>Early access opening soon</strong>
+          <span>Join the mobile app waitlist for App Store and Play Store access.</span>
+        </div>
+        <div class="trust-item">
+          <strong>Made for active job seekers</strong>
+          <span>Designed for students, graduates, career switchers, and repeat applicants.</span>
+        </div>
       </div>
     </section>
 
@@ -1350,25 +1515,12 @@
       </div>
     </section>
 
-    <section class="product-preview reveal">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="label">Product preview</div>
-          <h2>A quiet place for a very busy search.</h2>
-          <p>The app keeps jobs, contacts, companies, and tracking visible without making the workflow feel heavy.</p>
-        </div>
-        <figure class="preview-frame">
-          <img src="app-preview.png" alt="orbbt. app jobs dashboard preview">
-        </figure>
-      </div>
-    </section>
-
     <section id="features" class="reveal">
       <div class="wrap">
         <div class="section-head">
           <div class="label">Features</div>
-          <h2>Just the parts that keep you moving.</h2>
-          <p>No giant dashboard energy. orbbt. focuses on the few things that make a job hunt easier to manage.</p>
+          <h2>Just the parts that keep your job search moving.</h2>
+          <p>No giant dashboard energy. orbbt. focuses on job application management, company research, deadline reminders, and contacts.</p>
         </div>
 
         <div class="feature-tabs" role="tablist" aria-label="orbbt. features">
@@ -1432,40 +1584,98 @@
       </div>
     </section>
 
+    <section class="reveal">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="label">Before and after orbbt.</div>
+          <h2>Spreadsheets track data. orbbt. tracks momentum.</h2>
+          <p>A job hunt gets messy when every next step lives somewhere else. orbbt. turns scattered effort into one organized job search tracker.</p>
+        </div>
+
+        <div class="comparison-table" aria-label="Before and after orbbt. comparison">
+          <article class="comparison-col bad">
+            <h3>The old way</h3>
+            <ul class="comparison-list">
+              <li>
+                <strong>Jobs are scattered</strong>
+                <span>Applications sit across tabs, emails, notes, job boards, and spreadsheets.</span>
+              </li>
+              <li>
+                <strong>Research gets repeated</strong>
+                <span>You search the same company context again before every application or interview.</span>
+              </li>
+              <li>
+                <strong>Deadlines rely on memory</strong>
+                <span>Assessments, follow-ups, and interviews can slip when your calendar is not connected to your tracker.</span>
+              </li>
+              <li>
+                <strong>Contacts disappear</strong>
+                <span>Recruiters, referrals, alumni, and hiring managers get buried inside messages.</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="comparison-col good">
+            <h3>The orbbt. way</h3>
+            <ul class="comparison-list">
+              <li>
+                <strong>Every application has a home</strong>
+                <span>Track jobs, statuses, links, notes, salaries, deadlines, and next steps in one place.</span>
+              </li>
+              <li>
+                <strong>Company context is ready</strong>
+                <span>Use AI company research to understand what matters before you apply or interview.</span>
+              </li>
+              <li>
+                <strong>Follow-ups stay visible</strong>
+                <span>Deadline reminders help you know what needs attention before momentum fades.</span>
+              </li>
+              <li>
+                <strong>Relationships stay organized</strong>
+                <span>Keep contact notes connected to companies and roles because a good resume is not the whole process.</span>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section id="pricing" class="reveal">
       <div class="wrap">
         <div class="section-head">
           <div class="label">Pricing</div>
-          <h2>Start free. Upgrade when you need more.</h2>
+          <h2>Free during early access.</h2>
+          <p>Start with the job application tracker now. Pro features will open gradually as the product matures.</p>
         </div>
 
         <div class="pricing-grid">
           <article class="price-card">
-            <h3>Free</h3>
-            <p>For getting organized.</p>
+            <h3>Early Access</h3>
+            <p>For getting your job hunt organized.</p>
             <div class="price">$0 <small>/ month</small></div>
             <ul>
-              <li>Track 25 jobs</li>
-              <li>Basic alerts</li>
+              <li>Job application tracking</li>
+              <li>Basic deadline reminders</li>
               <li>Contacts and notes</li>
+              <li>Web access</li>
             </ul>
           </article>
 
           <article class="price-card featured">
-            <h3>Pro</h3>
-            <p>For active job seekers.</p>
-            <div class="price">$8 <small>/ month</small></div>
+            <h3>Planned Pro</h3>
+            <p>For active job seekers who need more power.</p>
+            <div class="price">Soon</div>
             <ul>
               <li>Unlimited jobs</li>
               <li>AI company research</li>
               <li>Advanced reminders</li>
-              <li>Mobile and extension</li>
+              <li>Mobile app and Chrome extension</li>
             </ul>
           </article>
 
           <article class="price-card">
-            <h3>Campus</h3>
-            <p>For career teams.</p>
+            <h3>Campus and Teams</h3>
+            <p>For career teams and small groups.</p>
             <div class="price">Custom</div>
             <ul>
               <li>Shared workspace</li>
@@ -1514,7 +1724,7 @@
         <h2>Ease your mind. Focus on what matters.</h2>
         <p class="lead">Your job hunt, organized in orbbt.</p>
         <div class="hero-actions" style="justify-content: center;">
-          <a class="btn primary" href="auth.html">Try now 100% free</a>
+          <a class="btn primary" href="auth.html">Try free on web</a>
           <a class="btn" href="waitlist.html">Join mobile app waitlist</a>
         </div>
       </div>
