@@ -402,7 +402,7 @@
 
     .signal-slot.three {
       bottom: 26%;
-      left: max(42px, calc(50% - 480px));
+      left: max(24px, calc(50% - 560px));
       animation-delay: -3.2s;
     }
 
@@ -2090,31 +2090,32 @@
       let dragging = false;
       let startX = 0;
       let startY = 0;
+      let offsetX = 0;
+      let offsetY = 0;
 
       signal.addEventListener("pointerdown", (event) => {
         dragging = true;
-        startX = event.clientX;
-        startY = event.clientY;
+        startX = event.clientX - offsetX;
+        startY = event.clientY - offsetY;
         signal.classList.add("dragging");
         signal.setPointerCapture(event.pointerId);
       });
 
       signal.addEventListener("pointermove", (event) => {
         if (!dragging) return;
-        const x = event.clientX - startX;
-        const y = event.clientY - startY;
-        signal.style.transform = `translate(${x}px, ${y}px)`;
+        offsetX = event.clientX - startX;
+        offsetY = event.clientY - startY;
+        signal.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
       });
 
-      const returnSignal = () => {
+      const settleSignal = () => {
         if (!dragging) return;
         dragging = false;
         signal.classList.remove("dragging");
-        signal.style.transform = "translate(0, 0)";
       };
 
-      signal.addEventListener("pointerup", returnSignal);
-      signal.addEventListener("pointercancel", returnSignal);
+      signal.addEventListener("pointerup", settleSignal);
+      signal.addEventListener("pointercancel", settleSignal);
     });
 
     document.querySelectorAll(".faq-question").forEach((button) => {
