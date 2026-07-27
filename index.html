@@ -258,6 +258,21 @@
       color: #ffffff;
     }
 
+    .btn.stack {
+      flex-direction: column;
+      gap: 1px;
+      min-height: 42px;
+      padding-top: 7px;
+      padding-bottom: 7px;
+      line-height: 1.05;
+    }
+
+    .btn.stack small {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
     .menu {
       display: none;
       width: 38px;
@@ -1415,7 +1430,7 @@
         <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
         <a href="#contact">Contact</a>
-        <a href="waitlist.html">Mobile app waitlist</a>
+        <a href="waitlist.html">Waitlist (mobile app)</a>
         <div class="nav-item">
           <button class="nav-dropdown" type="button" aria-haspopup="true">Policies</button>
           <div class="dropdown-menu">
@@ -1424,12 +1439,11 @@
             <a href="refund-policy.html">Refund Policy</a>
           </div>
         </div>
-        <a href="auth.html">Log in</a>
       </div>
 
       <div class="nav-actions">
         <a class="btn" href="auth.html">Log in</a>
-        <a class="btn primary" href="auth.html">Try free</a>
+        <a class="btn primary stack" href="auth.html"><span>Sign up</span><small>for free</small></a>
         <button class="menu" id="menu" type="button" aria-label="Open menu" aria-expanded="false">
           <span></span>
           <span></span>
