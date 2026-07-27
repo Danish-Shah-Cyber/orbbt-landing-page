@@ -22,12 +22,14 @@
       --line: #e8e2d8;
       --violet: #5b24ff;
       --violet-soft: #f0ebff;
-      --mint-soft: #ecfbf3;
+      --mint: #7ee0a3;
+      --mint-soft: #effcf4;
+      --pearl: #fff6db;
       --green-soft: #effaf1;
       --green: #168a45;
       --red-soft: #fff0ed;
       --red: #bd3f32;
-      --sun-soft: #fff6db;
+      --sun-soft: var(--pearl);
       --max: 1040px;
       --text: 650px;
     }
@@ -40,7 +42,7 @@
       position: relative;
       margin: 0;
       background:
-        linear-gradient(125deg, #fbfaf6 0%, #f6f1ff 28%, #f3fff8 54%, #fff8e7 78%, #fbfaf6 100%);
+        linear-gradient(125deg, #fbfaf6 0%, #f3edff 30%, #effcf4 56%, var(--pearl) 80%, #fbfaf6 100%);
       background-size: 180% 180%;
       color: var(--ink);
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -56,8 +58,8 @@
       inset: 0;
       z-index: 0;
       background:
-        linear-gradient(100deg, rgba(91, 36, 255, 0.075), transparent 34%, rgba(22, 138, 69, 0.065) 58%, transparent 76%),
-        linear-gradient(20deg, transparent 0%, rgba(255, 246, 219, 0.48) 48%, transparent 100%);
+        linear-gradient(100deg, rgba(91, 36, 255, 0.08), transparent 34%, rgba(126, 224, 163, 0.14) 58%, transparent 76%),
+        linear-gradient(20deg, transparent 0%, rgba(255, 246, 219, 0.52) 48%, transparent 100%);
       background-size: 160% 160%, 140% 140%;
       pointer-events: none;
       animation: pageVeil 18s ease-in-out infinite alternate;
