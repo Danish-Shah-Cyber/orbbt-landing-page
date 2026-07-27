@@ -320,27 +320,27 @@
       display: grid;
       place-items: center;
       pointer-events: none;
-      opacity: 0.88;
+      opacity: 0.98;
     }
 
     .orbit-ring {
       position: absolute;
       width: min(82vw, 780px);
       aspect-ratio: 1;
-      border: 1px solid rgba(91, 36, 255, 0.13);
+      border: 1px solid rgba(77, 31, 232, 0.2);
       border-radius: 50%;
       animation: orbitBreathe 9s ease-in-out infinite;
     }
 
     .orbit-ring.two {
       width: min(64vw, 580px);
-      border-color: rgba(91, 36, 255, 0.17);
+      border-color: rgba(77, 31, 232, 0.24);
       animation-delay: -2.8s;
     }
 
     .orbit-ring.three {
       width: min(44vw, 410px);
-      border-color: rgba(91, 36, 255, 0.2);
+      border-color: rgba(77, 31, 232, 0.28);
       animation-delay: -5.6s;
     }
 
@@ -361,7 +361,7 @@
       height: 7px;
       border-radius: 50%;
       background: var(--violet);
-      box-shadow: 0 0 28px rgba(91, 36, 255, 0.48);
+      box-shadow: 0 0 34px rgba(77, 31, 232, 0.62);
     }
 
     .orbit-dot.two {
@@ -374,6 +374,72 @@
       width: 5px;
       height: 5px;
       background: #8b6dff;
+    }
+
+    .hero-signals {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .signal-slot {
+      position: absolute;
+      pointer-events: auto;
+      animation: signalFloat 6.8s ease-in-out infinite;
+    }
+
+    .signal-slot.one {
+      top: 24%;
+      left: max(28px, calc(50% - 520px));
+    }
+
+    .signal-slot.two {
+      top: 30%;
+      right: max(28px, calc(50% - 500px));
+      animation-delay: -1.8s;
+    }
+
+    .signal-slot.three {
+      bottom: 26%;
+      left: max(42px, calc(50% - 480px));
+      animation-delay: -3.2s;
+    }
+
+    .signal-slot.four {
+      bottom: 24%;
+      right: max(42px, calc(50% - 470px));
+      animation-delay: -4.4s;
+    }
+
+    .hero-signal {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 8px 12px;
+      border: 1px solid rgba(77, 31, 232, 0.18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      color: #392268;
+      box-shadow: 0 0 28px rgba(77, 31, 232, 0.12), 0 12px 34px rgba(17, 17, 17, 0.04);
+      cursor: grab;
+      font-size: 12px;
+      font-weight: 800;
+      touch-action: none;
+      user-select: none;
+      transition: box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease, transform 0.42s ease;
+      white-space: nowrap;
+    }
+
+    .hero-signal:hover {
+      border-color: rgba(77, 31, 232, 0.34);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 34px rgba(77, 31, 232, 0.2), 0 14px 40px rgba(17, 17, 17, 0.06);
+    }
+
+    .hero-signal.dragging {
+      cursor: grabbing;
+      transition: none;
     }
 
     .eyebrow {
@@ -882,6 +948,8 @@
     }
 
     .price-card {
+      display: flex;
+      flex-direction: column;
       min-height: 305px;
       padding: 24px;
       border: 1px solid var(--line);
@@ -897,6 +965,21 @@
     .price-card.featured li,
     .price-card.featured .price small {
       color: rgba(255, 255, 255, 0.66);
+    }
+
+    .price-card .btn {
+      width: fit-content;
+      margin-top: auto;
+    }
+
+    .price-card.featured .btn {
+      border-color: rgba(255, 255, 255, 0.24);
+      background: #ffffff;
+      color: var(--ink);
+    }
+
+    .price-card.featured .btn:hover {
+      border-color: #ffffff;
     }
 
     .price {
@@ -1122,8 +1205,15 @@
     }
 
     .final {
+      padding-top: 84px;
+      padding-bottom: 84px;
       text-align: center;
       border-bottom: 0;
+    }
+
+    .final .narrow {
+      display: grid;
+      justify-items: center;
     }
 
     .final h2 {
@@ -1132,10 +1222,20 @@
       margin-right: auto;
     }
 
+    .final .lead {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .final-actions {
+      justify-content: center;
+      margin-top: 4px;
+    }
+
     .footer {
       padding: 56px 0 32px;
       border-top: 1px solid var(--line);
-      background: #f7f6f2;
+      background: rgba(247, 246, 242, 0.86);
       color: var(--muted);
       font-size: 15px;
     }
@@ -1143,8 +1243,17 @@
     .footer-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 70px;
+      gap: 48px;
       align-items: start;
+    }
+
+    .footer-col:nth-child(2) {
+      justify-self: center;
+    }
+
+    .footer-col:nth-child(3) {
+      justify-self: end;
+      text-align: left;
     }
 
     .footer-col h3 {
@@ -1275,6 +1384,16 @@
       }
     }
 
+    @keyframes signalFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
     @media (max-width: 860px) {
       .nav-links {
         display: none;
@@ -1319,6 +1438,10 @@
         display: block;
       }
 
+      .hero-signals {
+        display: none;
+      }
+
       .story,
       .contact-grid,
       .auth-grid {
@@ -1348,6 +1471,13 @@
 
       .feature-tab {
         flex: 0 0 auto;
+      }
+
+      .footer-col,
+      .footer-col:nth-child(2),
+      .footer-col:nth-child(3) {
+        justify-self: start;
+        text-align: left;
       }
     }
 
@@ -1460,6 +1590,13 @@
         <span class="orbit-ring three"></span>
         <span class="orbit-dot"></span>
         <span class="orbit-dot two"></span>
+      </div>
+
+      <div class="hero-signals" aria-label="orbbt. outcomes">
+        <span class="signal-slot one"><span class="hero-signal">Track applications</span></span>
+        <span class="signal-slot two"><span class="hero-signal">Research companies</span></span>
+        <span class="signal-slot three"><span class="hero-signal">Remember deadlines</span></span>
+        <span class="signal-slot four"><span class="hero-signal">Follow up</span></span>
       </div>
 
       <div class="wrap hero-inner">
@@ -1675,6 +1812,7 @@
               <li>Contacts and notes</li>
               <li>Web access</li>
             </ul>
+            <a class="btn primary" href="auth.html">Try free</a>
           </article>
 
           <article class="price-card featured">
@@ -1687,6 +1825,7 @@
               <li>Advanced reminders</li>
               <li>Mobile app and Chrome extension</li>
             </ul>
+            <a class="btn" href="auth.html">Go Pro</a>
           </article>
 
           <article class="price-card">
@@ -1698,6 +1837,7 @@
               <li>Member insights</li>
               <li>Priority support</li>
             </ul>
+            <a class="btn" href="#contact">Send enquiry</a>
           </article>
         </div>
       </div>
@@ -1739,7 +1879,7 @@
       <div class="narrow">
         <h2>Ease your mind. Focus on what matters.</h2>
         <p class="lead">Your job hunt, organized in orbbt.</p>
-        <div class="hero-actions" style="justify-content: center;">
+        <div class="hero-actions final-actions">
           <a class="btn primary" href="auth.html">Try free on web</a>
           <a class="btn" href="waitlist.html">Join mobile app waitlist</a>
         </div>
@@ -1750,7 +1890,7 @@
       <div class="narrow">
         <div class="label">FAQ</div>
         <h2>Frequently asked questions</h2>
-        <p class="lead">What to know about orbbt., privacy, and getting started.</p>
+        <p class="lead">Clear answers about orbbt., job tracking, mobile access, and getting started.</p>
 
         <div class="faq-list">
           <article class="faq-item open">
@@ -1760,55 +1900,43 @@
             </button>
             <div class="faq-answer">
               <div>
-                <p>orbbt. is a job hunt companion that keeps your applications, company research, deadlines, contacts, and follow-ups organized in one place.</p>
+                <p>orbbt. is a job hunt companion that helps job seekers track applications, research companies with AI, remember deadlines, and manage contacts in one place.</p>
               </div>
             </div>
           </article>
 
           <article class="faq-item">
             <button class="faq-question" type="button" aria-expanded="false">
-              <span>Is orbbt. free?</span>
+              <span>Is orbbt. a job tracker?</span>
               <span>+</span>
             </button>
             <div class="faq-answer">
               <div>
-                <p>You can start free. The paid Pro plan is planned for active job seekers who want unlimited tracking, AI company research, and advanced reminders.</p>
+                <p>Yes. orbbt. is a job application tracker and job hunt organizer for applications, statuses, deadlines, notes, contacts, and follow-ups.</p>
               </div>
             </div>
           </article>
 
           <article class="faq-item">
             <button class="faq-question" type="button" aria-expanded="false">
-              <span>What platforms will orbbt. support?</span>
+              <span>Does orbbt. have a mobile app?</span>
               <span>+</span>
             </button>
             <div class="faq-answer">
               <div>
-                <p>orbbt. is planned for web, mobile, and a Chrome extension, with a mobile app waitlist for App Store and Play Store early access.</p>
+                <p>The orbbt. mobile app is planned for iOS and Android. Join the App Store and Play Store waitlist for early access.</p>
               </div>
             </div>
           </article>
 
           <article class="faq-item">
             <button class="faq-question" type="button" aria-expanded="false">
-              <span>Is my job hunt data private?</span>
+              <span>How is orbbt. different?</span>
               <span>+</span>
             </button>
             <div class="faq-answer">
               <div>
-                <p>orbbt. uses your data to run the product and does not sell personal job hunt data. Final privacy details are available on the privacy policy page.</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Can my teammates try it?</span>
-              <span>+</span>
-            </button>
-            <div class="faq-answer">
-              <div>
-                <p>Yes. Once the project is hosted, you can share the site link and teammates can click through the pages and demo forms.</p>
+                <p>orbbt. focuses on calm job hunt organization: applications, AI company research, deadlines, contacts, and next steps without an overwhelming dashboard.</p>
               </div>
             </div>
           </article>
@@ -1956,6 +2084,37 @@
         featureImage.alt = item.alt;
         featurePoints.innerHTML = item.points.map((point) => `<li>${point}</li>`).join("");
       });
+    });
+
+    document.querySelectorAll(".hero-signal").forEach((signal) => {
+      let dragging = false;
+      let startX = 0;
+      let startY = 0;
+
+      signal.addEventListener("pointerdown", (event) => {
+        dragging = true;
+        startX = event.clientX;
+        startY = event.clientY;
+        signal.classList.add("dragging");
+        signal.setPointerCapture(event.pointerId);
+      });
+
+      signal.addEventListener("pointermove", (event) => {
+        if (!dragging) return;
+        const x = event.clientX - startX;
+        const y = event.clientY - startY;
+        signal.style.transform = `translate(${x}px, ${y}px)`;
+      });
+
+      const returnSignal = () => {
+        if (!dragging) return;
+        dragging = false;
+        signal.classList.remove("dragging");
+        signal.style.transform = "translate(0, 0)";
+      };
+
+      signal.addEventListener("pointerup", returnSignal);
+      signal.addEventListener("pointercancel", returnSignal);
     });
 
     document.querySelectorAll(".faq-question").forEach((button) => {
